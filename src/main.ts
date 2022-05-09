@@ -61,7 +61,10 @@ export const main = async (projects: Addon[]) => {
         });
 
         try {
-            if (project instanceof ResourcePackAddon || project instanceof DirectResourcePackAddon) {
+            if (
+                project instanceof ResourcePackAddon ||
+                project instanceof DirectResourcePackAddon
+            ) {
                 await project.download("out/resourcepacks");
             } else if (project instanceof CompiledAddon) {
                 await project.compile("out/plugins", "out/compiled");
