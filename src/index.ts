@@ -6,6 +6,8 @@ import { DirectAddon } from "./direct";
 import { main } from "./main";
 import { MultiAddon } from "./multiaddon";
 import { ResourcePackAddon } from "./rpaddon";
+import { DirectResourcePackAddon } from "./directrp";
+import { CompiledAddon } from "./compiled";
 
 const token = dotenv.config().parsed?.TOKEN;
 
@@ -134,9 +136,27 @@ const projects = [
     new DirectAddon(
         "https://ci.lucko.me/job/LuckPerms/1429/artifact/bukkit/loader/build/libs/LuckPerms-Bukkit-5.4.21.jar"
     ),
+    new DirectAddon(
+        "https://raw.githubusercontent.com/oraxen/oraxen/master/libs/compile/BSP.jar"
+    ),
+    new DirectAddon(
+        "https://raw.githubusercontent.com/oraxen/oraxen/master/libs/compile/MMOItems-6.6.0.jar"
+    ),
+    new DirectAddon(
+        "https://raw.githubusercontent.com/oraxen/oraxen/master/libs/compile/MythicMobs-1.0.0.jar"
+    ),
+
+    // Compiled Plugins
+    new CompiledAddon("oraxen/oraxen", "build/libs/oraxen-1.134.2.jar"),
 
     // Resource Packs
     new ResourcePackAddon("xenondevs/NovaRP", token),
+    new DirectResourcePackAddon(
+        "https://raw.githubusercontent.com/CraftoryStudios/Craftory-Tech/master/resourcepacks/original.zip"
+    ),
+    new DirectResourcePackAddon(
+        "https://raw.githubusercontent.com/CraftoryStudios/Craftory-Tech/master/resourcepacks/pipes.zip"
+    ),
 ];
 
 fs.rmSync("out", { recursive: true });

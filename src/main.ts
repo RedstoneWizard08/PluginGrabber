@@ -92,7 +92,7 @@ export const main = async (projects: Addon[]) => {
         mpb.updateTask("Downloading Plugins", { percentage: percentComplete });
 
         console.log(
-            `Downloaded ${
+            `${project instanceof CompiledAddon ? "Compiled" : "Downloaded"} ${
                 project.getDownloadedJars().length
             } files for ${project.getRepo()}.`
         );

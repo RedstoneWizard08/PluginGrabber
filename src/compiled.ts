@@ -53,6 +53,27 @@ export class CompiledAddon extends Addon {
                     }
                 );
 
+            if (
+                fs.existsSync(
+                    `${path.resolve(compileDir)}/${name}/build.gradle`
+                )
+            )
+                fs.writeFileSync(
+                    `${path.resolve(compileDir)}/${name}/build.gradle`,
+                    fs
+                        .readFileSync(
+                            `${path.resolve(compileDir)}/${name}/build.gradle`
+                        )
+                        .toString()
+                        .replace(
+                            `maven { url 'https://maven.elmakers.com/repository/' }`,
+                            `maven {
+                                    url 'http://maven.elmakers.com/repository/'
+                                    allowInsecureProtocol true
+                                }`
+                        )
+                );
+
             let isGradle = true;
 
             if (fs.existsSync(`${path.resolve(compileDir)}/${name}/pom.xml`))
