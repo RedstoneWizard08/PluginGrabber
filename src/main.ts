@@ -3,6 +3,7 @@ import { MultiProgressBars } from "multi-progress-bars";
 import * as chalk from "chalk";
 import { ResourcePackAddon } from "./rpaddon";
 import { CompiledAddon } from "./compiled";
+import { DirectResourcePackAddon } from "./directrp";
 
 const errored: {
     project: Addon;
@@ -60,7 +61,7 @@ export const main = async (projects: Addon[]) => {
         });
 
         try {
-            if (project instanceof ResourcePackAddon) {
+            if (project instanceof ResourcePackAddon || project instanceof DirectResourcePackAddon) {
                 await project.download("out/resourcepacks");
             } else if (project instanceof CompiledAddon) {
                 await project.compile("out/plugins", "out/compiled");
